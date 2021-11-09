@@ -69,6 +69,9 @@ func (p paramSearch) Visit(node ast.Node) astutils.Visitor {
 	case *ast.FuncCall:
 		p.parent = node
 
+	case *ast.CaseExpr:
+		p.parent = n.Arg
+
 	case *ast.InsertStmt:
 		if s, ok := n.SelectStmt.(*ast.SelectStmt); ok {
 			for i, item := range s.TargetList.Items {
