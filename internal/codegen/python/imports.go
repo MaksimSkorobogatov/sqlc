@@ -2,7 +2,7 @@ package python
 
 import (
 	"fmt"
-	"github.com/kyleconroy/sqlc/internal/config"
+	"github.com/MaksimSkorobogatov/sqlc/internal/config"
 	"sort"
 	"strings"
 )

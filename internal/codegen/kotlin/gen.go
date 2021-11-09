@@ -9,13 +9,13 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kyleconroy/sqlc/internal/codegen"
-	"github.com/kyleconroy/sqlc/internal/compiler"
-	"github.com/kyleconroy/sqlc/internal/config"
-	"github.com/kyleconroy/sqlc/internal/core"
-	"github.com/kyleconroy/sqlc/internal/inflection"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
-	"github.com/kyleconroy/sqlc/internal/sql/catalog"
+	"github.com/MaksimSkorobogatov/sqlc/internal/codegen"
+	"github.com/MaksimSkorobogatov/sqlc/internal/compiler"
+	"github.com/MaksimSkorobogatov/sqlc/internal/config"
+	"github.com/MaksimSkorobogatov/sqlc/internal/core"
+	"github.com/MaksimSkorobogatov/sqlc/internal/inflection"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/ast"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/catalog"
 )
 
 func sameTableName(n *ast.TableName, f core.FQN) bool {

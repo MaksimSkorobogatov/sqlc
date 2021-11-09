@@ -89,7 +89,7 @@ overrides:
 Each override document has the following keys:
 
 - `db_type`:
-  - The PostgreSQL or MySQL type to override. Find the full list of supported types in [postgresql_type.go](https://github.com/kyleconroy/sqlc/blob/main/internal/codegen/golang/postgresql_type.go#L12) or [mysql_type.go](https://github.com/kyleconroy/sqlc/blob/main/internal/codegen/golang/mysql_type.go#L12).
+  - The PostgreSQL or MySQL type to override. Find the full list of supported types in [postgresql_type.go](https://github.com/MaksimSkorobogatov/sqlc/blob/main/internal/codegen/golang/postgresql_type.go#L12) or [mysql_type.go](https://github.com/MaksimSkorobogatov/sqlc/blob/main/internal/codegen/golang/mysql_type.go#L12).
 - `go_type`:
   - A fully qualified name to a Go type to use in the generated code.
 - `nullable`:

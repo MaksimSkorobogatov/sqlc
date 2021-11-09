@@ -12,10 +12,10 @@ Python    Experimental  Experimental
 Future Language Support
 ************************
 
-- `C# <https://github.com/kyleconroy/sqlc/issues/373>`_
-- `TypeScript <https://github.com/kyleconroy/sqlc/issues/296>`_
+- `C# <https://github.com/MaksimSkorobogatov/sqlc/issues/373>`_
+- `TypeScript <https://github.com/MaksimSkorobogatov/sqlc/issues/296>`_
 
 Future Database Support
 ************************
 
-- `SQLite <https://github.com/kyleconroy/sqlc/issues/161>`_
+- `SQLite <https://github.com/MaksimSkorobogatov/sqlc/issues/161>`_

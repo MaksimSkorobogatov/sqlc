@@ -3,9 +3,9 @@ package kotlin
 import (
 	"log"
 
-	"github.com/kyleconroy/sqlc/internal/compiler"
-	"github.com/kyleconroy/sqlc/internal/config"
-	"github.com/kyleconroy/sqlc/internal/sql/catalog"
+	"github.com/MaksimSkorobogatov/sqlc/internal/compiler"
+	"github.com/MaksimSkorobogatov/sqlc/internal/config"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/catalog"
 )
 
 func postgresType(r *compiler.Result, col *compiler.Column, settings config.CombinedSettings) (string, bool) {

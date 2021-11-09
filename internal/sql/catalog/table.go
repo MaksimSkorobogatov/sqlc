@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
-	"github.com/kyleconroy/sqlc/internal/sql/sqlerr"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/ast"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/sqlerr"
 )
 
 func (c *Catalog) alterTable(stmt *ast.AlterTableStmt) error {
