@@ -7,7 +7,7 @@ import (
 	"github.com/MaksimSkorobogatov/sqlc/internal/engine/dolphin"
 )
 
-func Test_findParameters_withOrderByCase(t *testing.T) {
+func Test_findParameters_OrderByCase(t *testing.T) {
 	const sqlSrc = `
 SELECT *
 FROM items
@@ -37,4 +37,23 @@ LIMIT ? OFFSET ?;
 	if got := len(parameters); got != want {
 		t.Fatalf("len(parameters) = %d, want %d", got, want)
 	}
+
+	t.Logf("%#v", parameters)
+
+	// a := []paramRef{paramRef{
+	// 	parent: (*ast.ParamRef)(0xc00003c480),
+	// 	rv: (*ast.RangeVar)(nil),
+	// 	ref: (*ast.ParamRef)(0xc00003c480),
+	// 	name: "",
+	// }, paramRef{
+	// 	parent: (*limitOffset)(0x17eb8a0),
+	// 	rv: (*ast.RangeVar)(nil),
+	// 	ref: (*ast.ParamRef)(0xc00003c4b0),
+	// 	name: "",
+	// }, paramRef{
+	// 	parent: (*limitCount)(0x17eb8a0),
+	// 	rv: (*ast.RangeVar)(nil),
+	// 	ref: (*ast.ParamRef)(0xc00003c498),
+	// 	name: "",
+	// }}
 }

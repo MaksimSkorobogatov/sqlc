@@ -70,7 +70,7 @@ func (p paramSearch) Visit(node ast.Node) astutils.Visitor {
 		p.parent = node
 
 	case *ast.CaseExpr:
-		p.parent = n.Arg
+		p.parent = node
 
 	case *ast.InsertStmt:
 		if s, ok := n.SelectStmt.(*ast.SelectStmt); ok {
