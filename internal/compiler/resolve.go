@@ -115,8 +115,8 @@ func resolveCatalogRefs(
 				Number: ref.ref.Number,
 				Column: &Column{
 					Name:     parameterName(ref.ref.Number, "case_arg"),
-					DataType: "string",
-					NotNull:  true, // always we have 0 or "" to represent a zero value
+					DataType: "any",
+					NotNull:  true,
 				},
 			}
 
@@ -125,7 +125,7 @@ func resolveCatalogRefs(
 					if aConst, ok := caseWhen.Expr.(*ast.A_Const); ok {
 						switch aConst.Val.(type) {
 						case *ast.String:
-							param.Column.DataType = "string"
+							param.Column.DataType = "text"
 							param.Column.Type = &ast.TypeName{Name: "text"}
 						case *ast.Integer:
 							// when value of case-when is an integer or a boolean
