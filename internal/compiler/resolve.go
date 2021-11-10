@@ -18,7 +18,13 @@ func dataType(n *ast.TypeName) string {
 	}
 }
 
-func resolveCatalogRefs(c *catalog.Catalog, qc *QueryCatalog, rvs []*ast.RangeVar, args []paramRef, names map[int]string) ([]Parameter, error) {
+func resolveCatalogRefs(
+	c *catalog.Catalog,
+	qc *QueryCatalog,
+	rvs []*ast.RangeVar,
+	args []paramRef,
+	names map[int]string,
+) ([]Parameter, error) {
 	aliasMap := map[string]*ast.TableName{}
 	// TODO: Deprecate defaultTable
 	var defaultTable *ast.TableName
@@ -103,6 +109,29 @@ func resolveCatalogRefs(c *catalog.Catalog, qc *QueryCatalog, rvs []*ast.RangeVa
 					NotNull:  true,
 				},
 			})
+
+		case *ast.CaseExpr:
+			param := Parameter{
+				Number: ref.ref.Number,
+				Column: &Column{
+					Name:     parameterName(ref.ref.Number, "case_arg"),
+					DataType: "string",
+					NotNull:  true, // always we have 0 or "" to represent a zero value
+				},
+			}
+
+			if n.Arg != nil && n.Args != nil && len(n.Args.Items) != 0 {
+				if caseWhen, ok := n.Args.Items[0].(*ast.CaseWhen); ok {
+					if aConst, ok := caseWhen.Expr.(*ast.A_Const); ok {
+						if _, ok := aConst.Val.(*ast.Integer); ok {
+							// when value of case-when is an integer or a boolean
+							param.Column.DataType = "integer"
+						}
+					}
+				}
+			}
+
+			a = append(a, param)
 
 		case *ast.A_Expr:
 			// TODO: While this works for a wide range of simple expressions,

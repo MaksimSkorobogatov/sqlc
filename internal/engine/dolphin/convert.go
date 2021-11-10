@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	pcast "github.com/pingcap/parser/ast"
+	"github.com/pingcap/parser/mysql"
 	"github.com/pingcap/parser/opcode"
 	driver "github.com/pingcap/parser/test_driver"
 	"github.com/pingcap/parser/types"
@@ -562,6 +563,14 @@ func (c *cc) convertUpdateStmt(n *pcast.UpdateStmt) *ast.UpdateStmt {
 }
 
 func (c *cc) convertValueExpr(n *driver.ValueExpr) *ast.A_Const {
+	if mysql.IsIntegerType(n.Type.Tp) {
+		return &ast.A_Const{
+			Val: &ast.Integer{
+				Ival: n.Datum.GetInt64(),
+			},
+		}
+	}
+
 	return &ast.A_Const{
 		Val: &ast.String{
 			Str: n.Datum.GetString(),

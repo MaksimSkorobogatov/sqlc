@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/MaksimSkorobogatov/sqlc/internal/engine/dolphin"
+	"github.com/MaksimSkorobogatov/sqlc/internal/sql/ast"
 )
 
 func Test_findParameters_OrderByCase(t *testing.T) {
@@ -13,8 +14,8 @@ SELECT *
 FROM items
 ORDER BY CASE ?
              WHEN 'type' THEN type
-             WHEN 'name' THEN name
-             WHEN 'created_at' THEN created_at
+             WHEN TRUE THEN name
+             WHEN FALSE THEN created_at
              WHEN 'updated_at' THEN updated_at
              END, id
 LIMIT ? OFFSET ?;
@@ -38,7 +39,7 @@ LIMIT ? OFFSET ?;
 		t.Fatalf("len(parameters) = %d, want %d", got, want)
 	}
 
-	t.Logf("%#v", parameters)
+	t.Logf("%#v", parameters[0].parent.(*ast.CaseExpr).Args.Items[0].(*ast.CaseWhen).Expr)
 
 	// a := []paramRef{paramRef{
 	// 	parent: (*ast.ParamRef)(0xc00003c480),
