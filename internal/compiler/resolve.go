@@ -123,9 +123,14 @@ func resolveCatalogRefs(
 			if n.Arg != nil && n.Args != nil && len(n.Args.Items) != 0 {
 				if caseWhen, ok := n.Args.Items[0].(*ast.CaseWhen); ok {
 					if aConst, ok := caseWhen.Expr.(*ast.A_Const); ok {
-						if _, ok := aConst.Val.(*ast.Integer); ok {
+						switch aConst.Val.(type) {
+						case *ast.String:
+							param.Column.DataType = "string"
+							param.Column.Type = &ast.TypeName{Name: "text"}
+						case *ast.Integer:
 							// when value of case-when is an integer or a boolean
 							param.Column.DataType = "integer"
+							param.Column.Type = &ast.TypeName{Name: "integer"}
 						}
 					}
 				}
